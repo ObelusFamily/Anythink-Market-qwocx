@@ -44,6 +44,7 @@ class Item extends React.Component {
     const canModify =
       this.props.currentUser &&
       this.props.currentUser.username === this.props.item.seller.username;
+
     return (
       <div className="container page">
         <div className="text-dark">
@@ -51,7 +52,9 @@ class Item extends React.Component {
             <div className="col-6">
               <img
                 src={this.props.item.image}
-                onError={e => {e.currentTarget.src = '/placeholder.png'}}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src="/placeholder.png";}}
                 alt={this.props.item.title}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
