@@ -29,14 +29,18 @@ const ItemPreview = (props) => {
     }
   };
 
+
+
+
   return (
     <div
       className="card bg-dark border-light p-3"
       style={{ borderRadius: "20px" }}
     >
       <img
-        alt="item"
         src={item.image}
+        onError={e => {e.currentTarget.src = '/placeholder.png'}}
+        alt="item"
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
       />
